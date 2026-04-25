@@ -16,11 +16,12 @@
     background-clip: padding-box; 
 }
 
-/* @media (max-width: 600px) {
+@media (max-width: 600px) {
     .navbar{
-        width: 170%;
+        width: 97%;
+        margin-left: 5px;
     } 
-} */
+}
 
 .navbar ul{
     display: flex;
@@ -46,6 +47,12 @@
     display: flex;           
     line-height: 1.5;
     gap: 7px;                
+}
+
+@media (max-width: 600px) {
+    .navbar ul{
+      gap: 1px;
+    }
 }
 .navbar a:hover{
     background-color: rgba(153, 144, 144, 0.2) ;

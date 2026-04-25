@@ -6,6 +6,12 @@
   color: white;
 }
 
+@media (max-width:600px) {
+ .projects-section{
+  height: auto;
+ } 
+}
+
 .projects-container {
   display: flex;
   flex-wrap: wrap;
@@ -13,21 +19,45 @@
   margin-left: 4rem;
   margin-top: 3.5rem;
 }
+
 .projects-section h2{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 3.2rem;
   color: rgb(48, 227, 255);
 }
+
+@media (max-width:600px) {
+  .projects-section h2{
+    font-size: 1.6rem;
+  }
+}
+
+
 .projects-container h3{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.5rem;
   color: rgb(82, 218, 255);
 }
+
+@media (max-width:600px) {
+ .projects-container h3{
+  font-size: 0.7rem;
+ } 
+}
+
 .projects-container p{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(228, 228, 228);
   line-height: 1.7rem;
 }
+
+@media (max-width:600px) {
+ .projects-container p{
+  line-height: 1rem;
+  font-size: 0.5rem;
+ } 
+}
+
 .project-card {
   display: block;
   width: 21%;
@@ -38,6 +68,13 @@
   padding: 1rem;
   transition: transform 0.7s ease, box-shadow 0.3s ease;
 }
+
+@media (max-width:600px) {
+ .project-card {
+  width: 36%;
+ } 
+}
+
 .project-card:hover {
   transform: translateY(-6px);
   border: 1.5px solid rgb(0, 183, 255);
@@ -52,3 +89,8 @@
   filter: brightness(70%);
 }
 
+@media (max-width:600px) {
+ .project-card img{
+  width: 119%;
+ } 
+}
