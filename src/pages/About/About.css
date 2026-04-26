@@ -4,9 +4,10 @@
     overflow: hidden;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .about{
-        height: auto;
+        height: 60vh;
+        width: 100%;
     }
 }
 
@@ -16,10 +17,10 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .about h1{
         font-size: 1rem;
-        margin-top: 3rem;
+        margin-top: 2.5rem;
     }
 }
 
@@ -31,10 +32,11 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .about h2{
-        margin-left: 5rem;
-        font-size: 1.7rem;
+        margin-left: 2rem;
+        font-size: 1rem;
+        margin-top: 1.5rem;
     }   
 }
 
@@ -49,11 +51,12 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .left{
         height: 18rem;
-        margin-left: 5rem;
-        width: 32%;
+        margin-left: 2rem;
+        width: 38%;
+        border-radius: 12px;
     }
 }
 
@@ -63,6 +66,12 @@
     border-radius: 15px;
     object-fit: cover;
     display: block;
+}
+
+@media (max-width: 480px) {
+    .about-image{
+        border-radius: 10px;
+    }
 }
 
 .right h3{
@@ -76,10 +85,10 @@
 
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
    .right h3{
-    font-size: 0.6rem;
-    margin-right: 0.4rem;
+    font-size: 0.5rem;
+    margin-right: -0.2rem;
     margin-top: -17rem;
     line-height: 1rem;
    }   

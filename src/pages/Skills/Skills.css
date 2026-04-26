@@ -12,9 +12,10 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .skills-section{
     height: 80vh;
+    width: 100%;
   }   
 }
 
@@ -29,10 +30,10 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .skills-section h2{
-    margin-top: 15rem;
-    font-size: 1.3rem;
+    margin-top: 3rem;
+    font-size: 1.4rem;
   }   
 }
 
@@ -61,11 +62,10 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
  .skills-card{
-  width: 13rem;
-  padding: 1.3rem;
-  height: auto ;
+  width: 15rem;
+  padding: 1.4rem;
  }   
 }
 
@@ -82,9 +82,9 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
  .skills-card h3{
-  font-size: 0.7rem;
+  font-size: 0.9rem;
  }
 }
 
@@ -97,9 +97,9 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
  .icons{
-  gap: 1rem;
+  gap: 1.5rem;
  }   
 }
 
@@ -111,9 +111,9 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
  .icons div{
-  font-size: 1rem;
+  font-size: 1.3rem;
  }   
 }
 
@@ -124,8 +124,8 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
  .icons div p{
-  font-size: 0.4rem;
+  font-size: 0.5rem;
  }   
 }

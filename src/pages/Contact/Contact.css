@@ -11,9 +11,11 @@
     margin-top: 13rem;
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
  .contact-form h2{
-    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    margin-left: 3rem;
  } 
 }
 
@@ -26,9 +28,10 @@
     letter-spacing: 1px;
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
  .contact-form p{
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+    margin-left: 3rem;
  } 
 }
 
@@ -42,9 +45,10 @@
     margin-top: 2rem;
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
  .info-item svg{
-    font-size: 0.8rem;
+    font-size: 1rem;
+    margin-left: 3rem;
  } 
 }
 
@@ -56,10 +60,11 @@
     font-size: 1rem;
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
  .info-item h3{
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     margin-top: -2rem;
+    margin-left: 6rem;
  } 
 }
 
@@ -69,10 +74,11 @@
     color: rgb(182, 178, 178);
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
  .info-item p{
-    font-size: 9px;
+    font-size: 11px;
     line-height: 16px;
+    margin-left: 6rem;
  } 
 }
 
@@ -86,9 +92,10 @@
     margin-top: 2rem;
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
   .info-type svg{
-    font-size: 0.8rem;
+    font-size: 1rem;
+    margin-left: 3rem;
   }
 }
 
@@ -100,10 +107,11 @@
     font-size: 1rem;
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
  .info-type h3{
     margin-top: -2rem;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+    margin-left: 6rem;
  } 
 }
 
@@ -113,10 +121,11 @@
     color: rgb(182, 178, 178);
 }
 
-@media (max-width:600px) {
+@media (max-width:480px) {
  .info-type p{
-    font-size: 9px;
+    font-size: 11px;
     line-height: 16px;
+    margin-left: 6rem;
  } 
 }
 
@@ -134,15 +143,15 @@ form {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   form {
-    width: 85%;              
+    width: 80%;              
     margin: 1rem 0 0 0;      
     padding: 1.5rem;
     float: none;           
     margin-left: 2rem;        
-    margin-top: 1rem;      
-    height: 45%;  
+    margin-top: 3.5rem;      
+    height: 51%;  
   }
 }
 
@@ -155,6 +164,13 @@ form textarea {
     border-radius: 10px;
     padding: 1rem;
     font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+    form input, form textarea{
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
 }
 
 input:-webkit-autofill {
@@ -191,6 +207,14 @@ form button {
     justify-content: center;
     gap: 0.5rem;
 }
+
+@media (max-width: 480px) {
+ form button {
+    padding: 0.8rem;
+    margin-top: 0.7rem;
+ }  
+}
+
 form button:hover {
     background: linear-gradient(135deg, #3961b6, #9f48ba);
 }
