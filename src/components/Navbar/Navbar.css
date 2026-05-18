@@ -1,84 +1,95 @@
 .navbar {
     background-color: rgb(29, 44, 60);
-    padding: 1px;
     align-items: center;
     display: flex;
-    height: 3.5rem;
-    width: 40%;
-    margin-left: 30rem;
-    margin-top: 20px;
+    height: 60px;
+    width: 38%;
+    margin-left: 30vw;
+    margin-top: 1vw;
     border-radius: 50px;
-    border: 3px solid rgb(26, 160, 190); 
-    box-shadow: 0 4px 10px rgba(26, 160, 190, 0.5);
-    position: sticky; 
-    top: 10px;        
-    z-index: 1000;    
+    border: 3px solid rgb(26, 160, 190);     
     background-clip: padding-box; 
+    position: fixed;
+    top: 10px;
+    z-index: 1000;
+    justify-content: center;
+    box-shadow: 0px 7px 20px rgb(17, 104, 123);
 }
-
-@media (max-width: 480px) {
-  .navbar {
-    margin-left: 0.4rem;
-    width: 96%;
-    height: 2.6rem;
-    top: 5px;
-  }
-}
-
-
-
-.navbar ul{
+.navbar ul {
     display: flex;
-    justify-content: space-between;
-    padding: 0px 20px;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2vw;
     color: white;
     list-style: none;
-    width: 100%;
+    padding: 0 8px;
 }
-
-@media (max-width: 480px) {
-    .navbar ul{
-      gap: 1.2px;
-      width: 50%;
-    }
-}
-
 .navbar svg {
-  font-size: 20px;
-  margin-bottom: -2px;
+    font-size: 1.1vw;
 }
-
-@media (max-width:480px) {
-  .navbar svg{
-    font-size: 15px;
-    margin-bottom: -5px;
-  }
-}
-
 .navbar a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8vw;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 8px 15px;       
+    padding: 0.5vw 0.9vw;       
     border-radius: 50px;     
     transition: 0.3s ease;
     display: flex;           
+    align-items: center;
     line-height: 1.5;
-    gap: 7px;                
+    gap: 0.5vw;                
 }
-
-@media (max-width:480px) {
-  .navbar a{
-    font-size: 0.8rem;
-    padding: 6px 10px;
-  }
-}
-
-.navbar a:hover{
-    background-color: rgba(153, 144, 144, 0.2) ;
+.navbar a:hover {
+    background-color: rgba(153, 144, 144, 0.2);
 }
 .navbar li.active a {
-    background-color: rgba(153, 144, 144, 0.2) ;
+    background-color: rgba(153, 144, 144, 0.2);
+}
+
+
+@media (max-width: 900px) {
+    .navbar {
+        width: 75%;
+        margin-left: 12.5%;
+    }
+    .navbar ul {
+        gap: 4px;
+        padding: 0 10px;
+    }
+    .navbar a {
+        font-size: 13px;
+        padding: 6px 12px;
+        gap: 5px;
+    }
+    .navbar svg {
+        font-size: 15px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .navbar {
+        width: 85%;
+        height: 46px;
+        margin-left: 7%;
+        top: 8px;
+        border-radius: 50px;
+    }
+    .navbar ul {
+        gap: 2vw;
+        padding: 0 1.5vw;
+        width: 100%;
+    }
+    .navbar a {
+        font-size: 1.8vw;
+        gap: 0.8vw;
+        padding: 1.2vw 2vw;
+        white-space: nowrap;
+        border-radius: 50px;
+    }
+    .navbar svg {
+        font-size: 2vw;
+        flex-shrink: 0;
+    }
 }

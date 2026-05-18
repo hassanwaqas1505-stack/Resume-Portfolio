@@ -6,7 +6,7 @@ const Navbar = () => {
   const [menu, setMenu] = useState("home");
 
   const isInitialLoad = useRef(true);
-  const isClicking = useRef(false); // 🔥 NEW LOCK
+  const isClicking = useRef(false); 
 
   useEffect(() => {
     const sections = ["home", "about", "skills", "projects", "contact"];

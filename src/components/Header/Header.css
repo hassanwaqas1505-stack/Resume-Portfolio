@@ -8,13 +8,6 @@
   font-family: 'Arial', sans-serif;
 }
 
-@media (max-width:480px) {
- .header{
-  width: 100%;
-  height: 60vh;
- } 
-}
-
 .header-content {
   position: relative;
   z-index: 10;
@@ -53,7 +46,7 @@
 }
 .planets {
   position: absolute;
-  margin-top: 5rem;
+  margin-top: 7rem;
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -63,15 +56,6 @@
   animation: floatPlanet 22s ease-in-out infinite alternate;
   z-index: 2;
   box-shadow: 0 0 20px rgba(255,200,50,0.5);
-}
-
-@media (max-width: 480px) {
-  .planets{
-   width: 70px;
-   height: 70px;
-   margin-top: 0.7rem;
-   margin-right: -3rem;
-  }
 }
 
 @keyframes floatPlanet {
@@ -130,96 +114,54 @@
   pointer-events: none;
 }
 
-.header p{
-    background-color: rgb(19, 36, 53);
-    color: rgb(243, 230, 230);
-    width: 14%;
-    font-size: 1.1rem;
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 50px;
-    text-align: center;
-    display: inline-block;
-    line-height: 2;
-    border: 1px solid rgb(58, 58, 58);
-    margin-top: 4rem;
-    margin-left: 2.5rem;
+.header p {
+  background-color: rgb(19, 36, 53);
+  color: rgb(243, 230, 230);
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 50px;
+  text-align: center;
+  display: inline-block;
+  line-height: 2;
+  border: 1px solid rgb(58, 58, 58);
+  margin-top: 9rem;
+  margin-left: 2.5rem;
+  padding: 0 1rem;
 }
 
-
-@media (max-width: 480px) {
-  .header p {
-    width: fit-content;
-    display: inline-block;
-    font-size: 0.6rem;
-    width: 27%;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
+.header h1 {
+  font-size: 4rem;
+  color: white;
+  margin-top: -0.5rem;
+  margin-left: 2.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-.header h1{
-    font-size: 4.5rem;
-    color: white;
-    margin-top: -0.5rem;
-    margin-left: 2.5rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.header span {
+  color: rgb(51, 237, 230);
 }
 
-
-
-@media (max-width: 480px) {
-  .header h1{
-    font-size: 1.9rem;
-    margin-left: 1.5rem;
-  }
+.box h4 {
+  background-color: rgb(4, 24, 45);
+  margin-top: -0.5rem;
+  border: 1px solid rgb(90, 142, 220);
+  color: rgb(65, 169, 255);
+  width: 37%;
+  text-align: center;
+  font-size: 1.8rem;
+  font-family: monospace;
+  border-radius: 10px;
+  padding: 12px 12px;
+  margin-left: 2.5rem;
+  box-shadow: 0 0 10px 2px rgba(105, 110, 111, 0.4);
 }
 
-
-.header span{
-    color: rgb(51, 237, 230);
-}
-.box h4{
-    background-color: rgb(4, 24, 45);
-    margin-top: -0.5rem;
-    border: 1px solid rgb(90, 142, 220);
-    color: rgb(65, 169, 255);
-    width: 37%;
-    text-align: center;
-    font-size: 1.8rem;
-    font-family: monospace;
-    border-radius: 10px;
-    padding: 12px 12px;
-    margin-left: 2.5rem;
-    box-shadow: 0 0 10px 2px rgba(105, 110, 111, 0.4);
-}
-
-@media (max-width: 480px) {
-  .box h4{
-    width: 67%;
-    display: block;
-    padding: 0.3rem 0.1rem;
-    font-size: 0.9rem;
-    margin-left: 1.5rem;
-    border-radius: 5px;
-  }
-}
-
-.header h2{
-    color: rgb(223, 221, 221);
-    font-size: 1.3rem;
-    line-height: 2rem;
-    margin-left: 2.5rem;
-    font-family: Arial, Helvetica, sans-serif;
-} 
-
-@media (max-width: 480px) {
-  .header h2{
-    font-size: 0.7rem;
-    line-height: 1.4rem;
-    margin-top: -0.3rem;
-    margin-left: 1.5rem;
-  }
+.header h2 {
+  color: rgb(206, 206, 206);
+  font-size: 1.2rem;
+  line-height: 2rem;
+  margin-left: 2.5rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .button1, .button2 {
@@ -238,40 +180,89 @@
   transform: translateY(0);
 }
 
-@media (max-width: 480px) {
- .button1, .button2{
-  width: 14%;
-  padding: 12px;
-  font-size: 0.7rem;
-  margin-top: 1rem;
-  margin-left: 1.5rem;
- } 
+.button1:hover, .button2:hover {
+  transform: scale(1.06);
 }
 
-
-@media (max-width: 600px) {
-    .button2{
-      margin-left: 1.1rem;
-    }
-}
-
-.button1:hover, .button2:hover{
-  transform:  scale(1.1);
-}
 .button1 {
   background: linear-gradient(90deg, #2c8cd0, #3ebba0);
 }
 
 .button1:hover {
-  background: linear-gradient(90deg, #0e75ad, #00cca0); 
-  box-shadow: 0 0 20px rgba(0, 255, 128, 0.5); 
+  background: linear-gradient(90deg, #0e75ad, #00cca0);
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.5);
 }
 
 .button2 {
-  background: linear-gradient(90deg, #36e1ff, #7b60ff);
+  background: linear-gradient(90deg, #4ac8df, #236cff);
+  margin-left: 1rem;
 }
 
 .button2:hover {
-  background: linear-gradient(90deg, #1d6145, #09ffef); 
-  box-shadow: 0 10px 20px rgba(18, 115, 127, 0.5); 
+  background: linear-gradient(90deg, #307357, #15dcff);
+  box-shadow: 0 10px 20px rgba(19, 152, 169, 0.5);
 }
+
+
+@media (max-width: 900px) {
+  .header p  { font-size: 0.95rem; }
+  .header h1 { font-size: 3.2rem; }
+  .box h4    { font-size: 1.4rem; width: 50%; }
+  .header h2 { font-size: 1.1rem; }
+  .button1, .button2 { width: 13%; font-size: 1.1rem; padding: 14px; }
+  .planets   { width: 110px; height: 110px; }
+}
+
+
+@media (max-width: 600px) {
+  .header    { height: 70vh; }
+
+  .planets {
+    width: 12vw;
+    height: 12vw;
+    margin-top: 6rem;
+    right: 4%;
+  }
+
+  .header p {
+    font-size: 2.5vw;
+    margin-left: 4vw;
+    margin-top: 7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header h1 {
+    font-size: 6vw;
+    margin-left: 4vw;
+    margin-top: 0.3rem;
+  }
+
+  .box h4 {
+    width: 60%;
+    font-size: 3vw;
+    padding: 0.4rem 0.3rem;
+    margin-left: 4vw;
+    border-radius: 5px;
+  }
+
+  .header h2 {
+    font-size: 2.2vw;
+    line-height: 1.6;
+    margin-left: 4vw;
+    margin-top: -0.2rem;
+  }
+
+  .button1, .button2 {
+    width: 16vw;
+    padding: 2vw;
+    font-size: 2.2vw;
+    margin-top: 1rem;
+    margin-left: 4vw;
+    border-radius: 8px;
+  }
+
+  .button2 {
+    margin-left: 2vw;
+  }
+}
+

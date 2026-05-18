@@ -16,8 +16,8 @@ const Header = () => {
       <h4>Full-Stack and Mern Stack Developer</h4>
       </div>
       <h2>React.Js Developer | Competitive Programmer | Crafting <br /> frameworks and coding the future.</h2>
-      <a href="https://github.com/yourprofile" className="button1">Github</a>
-      <a href="https://linkedin.com/in/yourprofile" className="button2">LinkedIn</a>
+      <a href="https://github.com/hassanwaqas1505-stack" target="_blank" rel="noreferrer" className="button1">Github</a>
+      <a href="https://www.linkedin.com/in/hassan-mughal-552610397" target="_blank" rel="noreferrer" className="button2">LinkedIn</a>
     </div>
   )
 }

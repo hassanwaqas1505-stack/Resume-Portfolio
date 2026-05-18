@@ -1,6 +1,10 @@
-body{
+body {
     background-color: #010512;
+    overflow-x: hidden;
+    max-width: 100%;
 }
-html{
+
+html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
