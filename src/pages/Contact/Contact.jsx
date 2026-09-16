@@ -27,7 +27,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const res = await fetch("https://portfolio-backend-two-pink.vercel.app/api/contact", {
+    const res = await fetch("https://portfolio-backend-ten-rho.vercel.app/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

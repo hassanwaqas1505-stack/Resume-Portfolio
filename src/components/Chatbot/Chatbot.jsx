@@ -29,7 +29,7 @@ const Chatbot = () => {
     setMessage("");
     try {
       const response = await fetch(
-        "https://portfolio-backend-two-pink.vercel.app/api/chatbot-message",
+        "https://portfolio-backend-ten-rho.vercel.app/api/chatbot-message",
         {
           method: "POST",
           headers: {
