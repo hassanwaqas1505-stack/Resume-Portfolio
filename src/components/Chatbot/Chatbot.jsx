@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Chatbot.css";
 
 const Chatbot = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -73,10 +74,29 @@ const Chatbot = () => {
     }
   };
 
+  if (!isOpen) {
+    return (
+      <button
+        className="chatbot-toggle-btn"
+        onClick={() => setIsOpen(true)}
+        aria-label="Open chat"
+      >
+        💬
+      </button>
+    );
+  }
+
   return (
     <div className="chatbot">
       <div className="chatbot-header">
-        Hassan's AI Assistant
+        <span>Hassan's AI Assistant</span>
+        <button
+          className="chatbot-close-btn"
+          onClick={() => setIsOpen(false)}
+          aria-label="Close chat"
+        >
+          ✕
+        </button>
       </div>
 
       <div className="chatbot-messages">
