@@ -71,6 +71,7 @@
 
 // export default Header
 
+
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -99,7 +100,6 @@ const Header = () => {
     const ctx = gsap.context(() => {
       const elements = [
         badgeRef.current,
-        titleRef.current,
         subtitleRef.current,
         descriptionRef.current,
         buttonsRef.current
@@ -133,16 +133,6 @@ const Header = () => {
         y: 0,
         duration: 0.8
       })
-        .to(
-          titleRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power4.out"
-          },
-          "-=0.35"
-        )
         .to(
           subtitleRef.current,
           {
@@ -181,16 +171,6 @@ const Header = () => {
             ease: "elastic.out(1, 0.55)"
           },
           "-=1.3"
-        )
-        .to(
-          glowRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1.5,
-            ease: "power2.out"
-          },
-          "-=1.5"
         )
         .to(
           glowRef.current,

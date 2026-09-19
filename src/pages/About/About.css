@@ -127,7 +127,6 @@
 } */
 
 
-
 .about {
     position: relative;
     height: 100vh;
@@ -152,6 +151,8 @@
     filter: blur(80px);
     opacity: 0;
     transition: opacity 1s ease;
+    will-change: transform, opacity;
+    transform: translateZ(0);
 }
 
 .orb-1 {
@@ -186,20 +187,26 @@
 }
 
 @keyframes orbOne {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(120px, 60px) scale(1.25); }
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(120px, 60px, 0) scale(1.25); }
 }
 
 @keyframes orbTwo {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-100px, -70px) scale(1.2); }
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-100px, -70px, 0) scale(1.2); }
 }
 
 @keyframes orbThree {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-100px); }
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(-100px, 0, 0); }
 }
 
+/* ==========================================================
+   LIGHT LINES
+   Fixed: previously animated `left` / `right` (layout props),
+   which forces reflow every frame and causes mobile glitching.
+   Now animated purely with `transform: translateX()`.
+========================================================== */
 .light-line {
     position: absolute;
     width: 55%;
@@ -207,18 +214,19 @@
     opacity: 0;
     background: linear-gradient(90deg, transparent, rgba(48, 227, 255, 0.7), transparent);
     filter: blur(0.5px);
+    will-change: transform, opacity;
 }
 
 .line-1 {
     top: 28%;
     left: -60%;
-    transform: rotate(-15deg);
+    transform: translateX(0) rotate(-15deg);
 }
 
 .line-2 {
     bottom: 20%;
     right: -60%;
-    transform: rotate(-15deg);
+    transform: translateX(0) rotate(-15deg);
 }
 
 .animate .line-1 {
@@ -230,19 +238,19 @@
 }
 
 @keyframes lightMoveOne {
-    0% { left: -60%; opacity: 0; }
+    0% { transform: translateX(0) rotate(-15deg); opacity: 0; }
     15% { opacity: 0.7; }
-    50% { left: 100%; opacity: 0.8; }
+    50% { transform: translateX(280%) rotate(-15deg); opacity: 0.8; }
     70% { opacity: 0; }
-    100% { left: 120%; opacity: 0; }
+    100% { transform: translateX(320%) rotate(-15deg); opacity: 0; }
 }
 
 @keyframes lightMoveTwo {
-    0% { right: -60%; opacity: 0; }
+    0% { transform: translateX(0) rotate(-15deg); opacity: 0; }
     15% { opacity: 0.6; }
-    50% { right: 100%; opacity: 0.7; }
+    50% { transform: translateX(-280%) rotate(-15deg); opacity: 0.7; }
     70% { opacity: 0; }
-    100% { right: 120%; opacity: 0; }
+    100% { transform: translateX(-320%) rotate(-15deg); opacity: 0; }
 }
 
 .star {
@@ -331,6 +339,15 @@
     margin-top: 2rem;
 }
 
+/* ==========================================================
+   IMAGE WRAPPER (.left)
+   Fixed: previously ran TWO animations on the same element,
+   both touching `transform` (imageReveal + imageFloat).
+   When imageReveal finished, imageFloat took over and caused
+   a visible transform "snap" — glitchy on mobile.
+   Fix: single reveal animation on .left, float animation
+   moved to an inner wrapper so they never fight over transform.
+========================================================== */
 .left {
     position: relative;
     width: 35%;
@@ -340,16 +357,20 @@
     background: linear-gradient(135deg, rgb(27, 206, 255), rgb(26, 206, 134));
     opacity: 0;
     transform: translateX(-100px) scale(0.9);
+    will-change: transform, opacity;
 }
 
 .animate .left {
-    animation:
-        imageReveal 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-        imageFloat 5s 1.8s ease-in-out infinite;
+    animation: imageReveal 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes imageReveal {
     to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* Float now lives on the inner wrapper, starts only after reveal ends */
+.animate .image-wrapper {
+    animation: imageFloat 5s 1.55s ease-in-out infinite;
 }
 
 @keyframes imageFloat {
@@ -363,6 +384,7 @@
     height: 100%;
     border-radius: 16px;
     background: rgb(2, 2, 24);
+    will-change: transform;
 }
 
 .image-wrapper::before {
@@ -532,9 +554,15 @@
     .signature { margin-top: 1.5rem; text-align: left; }
     .signature em { font-size: 3.5vw; line-height: 1.5; }
 
-    .orb-1 { width: 250px; height: 250px; }
-    .orb-2 { width: 220px; height: 220px; }
-    .orb-3 { width: 160px; height: 160px; }
+    /* Reduced blur + smaller orbs = lighter GPU load on mobile */
+    .orb {
+        filter: blur(40px);
+    }
+
+    .orb-1 { width: 220px; height: 220px; }
+    .orb-2 { width: 190px; height: 190px; }
+    .orb-3 { display: none; } /* extra load removed on mobile */
+
     .light-line { width: 80%; }
 }
 
@@ -554,14 +582,17 @@
     .signature { margin-top: 1.2rem; }
     .signature em { font-size: 3.8vw; }
 
-    .orb-1 { width: 200px; height: 200px; }
-    .orb-2 { width: 180px; height: 180px; }
-    .orb-3 { width: 130px; height: 130px; }
+    .orb {
+        filter: blur(32px);
+    }
+
+    .orb-1 { width: 170px; height: 170px; }
+    .orb-2 { width: 150px; height: 150px; }
     .light-line { width: 75%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .orb, .star, .light-line, .left, .about-image,
+    .orb, .star, .light-line, .left, .image-wrapper, .about-image,
     .image-wrapper::before, .about-header h1, .about-header h2, .right h3 {
         animation: none !important;
         transition: none !important;

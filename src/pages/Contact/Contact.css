@@ -210,7 +210,6 @@ form button:hover {
 
 
 
-
 .contact-form {
     background-color: rgb(2, 2, 24);
     height: 100vh;
@@ -354,6 +353,13 @@ form button {
         background: linear-gradient(135deg, #3961b6, #9f48ba);
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(66, 112, 212, 0.25);
+    }
+}
+
+@media (hover: none) {
+    form button:active {
+        transform: scale(0.97);
+        box-shadow: 0 4px 12px rgba(66, 112, 212, 0.25);
     }
 }
 

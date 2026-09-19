@@ -81,6 +81,7 @@ const Chatbot = () => {
         onClick={() => setIsOpen(true)}
         aria-label="Open chat"
       >
+        <span className="chatbot-toggle-label">Hassan's Portfolio AI</span>
         💬
       </button>
     );
