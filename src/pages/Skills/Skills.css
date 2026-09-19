@@ -131,10 +131,10 @@
 
 
 
-
 .skills-section {
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   background: #020218;
   display: flex;
   flex-direction: column;
@@ -161,16 +161,8 @@
 }
 
 @keyframes backgroundPulse {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.6;
-  }
-
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 1;
-  }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
 }
 
 .skills-title {
@@ -182,9 +174,7 @@
   font-style: italic;
   letter-spacing: 1px;
   color: rgb(81, 158, 229);
-  text-shadow:
-    0 8px 15px rgb(20, 45, 68),
-    0 12px 25px rgb(52, 96, 136);
+  text-shadow: 0 8px 15px rgb(20, 45, 68), 0 12px 25px rgb(52, 96, 136);
   cursor: pointer;
 }
 
@@ -208,17 +198,10 @@
   text-align: center;
   border-radius: 18px;
   border: 1px solid rgba(91, 147, 181, 0.35);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.025)
-    );
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transform-style: preserve-3d;
   cursor: pointer;
   will-change: transform;
@@ -230,36 +213,19 @@
   inset: 0;
   border-radius: 18px;
   padding: 1px;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(76, 190, 240, 0.7),
-    transparent,
-    rgba(76, 190, 240, 0.4),
-    transparent
-  );
+  background: linear-gradient(120deg, transparent, rgba(76, 190, 240, 0.7), transparent, rgba(76, 190, 240, 0.4), transparent);
   background-size: 300% 300%;
   animation: borderMove 5s linear infinite;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
 }
 
 @keyframes borderMove {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .card-glow {
@@ -311,29 +277,49 @@
 }
 
 .skill-item svg {
-  transition:
-    filter 0.3s ease,
-    transform 0.3s ease;
+  transition: filter 0.3s ease, transform 0.3s ease;
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.12));
   cursor: pointer;
 }
 
-.skill-item:hover svg {
-  filter:
-    drop-shadow(0 0 8px rgba(255, 255, 255, 0.3))
-    drop-shadow(0 0 18px rgba(65, 165, 220, 0.3));
+@media (hover: hover) and (pointer: fine) {
+  .skill-item:hover svg {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 18px rgba(65, 165, 220, 0.3));
+  }
+
+  .skills-card:hover {
+    box-shadow:
+      0 25px 50px rgba(0, 0, 0, 0.45),
+      0 0 30px rgba(65, 165, 220, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (hover: none) {
+  .skills-card {
+    transition: transform 0.2s ease;
+  }
+
+  .skill-item {
+    transition: transform 0.2s ease;
+  }
+
+  .skills-card:active {
+    transform: scale(0.98);
+  }
+
+  .skill-item:active {
+    transform: scale(0.92);
+  }
+
+  .skill-item:active svg {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 18px rgba(65, 165, 220, 0.3));
+  }
 }
 
 .skill-item p {
   margin: 0.5rem 0 0;
-  font-family:
-    "Lucida Sans",
-    "Lucida Sans Regular",
-    "Lucida Grande",
-    "Lucida Sans Unicode",
-    Geneva,
-    Verdana,
-    sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
@@ -341,25 +327,12 @@
 }
 
 @media (max-width: 1100px) {
-  .skills-grid {
-    gap: 1.5rem;
-  }
-
-  .skills-card {
-    width: 23rem;
-  }
-
-  .icons {
-    gap: 1.5rem;
-  }
+  .skills-grid { gap: 1.5rem; }
+  .skills-card { width: 23rem; }
+  .icons { gap: 1.5rem; }
 }
 
-/* =========================
-   TABLET
-========================= */
-
 @media (max-width: 900px) {
-
     .skills-section {
         width: 100%;
         min-height: auto;
@@ -430,13 +403,7 @@
     }
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 600px) {
-
     .skills-section {
         width: 100%;
         min-height: auto;
@@ -484,7 +451,6 @@
         text-align: center;
     }
 
-    /* ICONS KI ORIGINAL POSITION */
     .icons {
         width: 100%;
         display: flex;
@@ -511,13 +477,7 @@
     }
 }
 
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
 @media (max-width: 400px) {
-
     .skills-section {
         width: 100%;
         padding: 4.5rem 4vw;
@@ -525,9 +485,7 @@
         overflow-x: hidden;
     }
 
-    .skills-title {
-        font-size: 8.5vw;
-    }
+    .skills-title { font-size: 8.5vw; }
 
     .skills-grid {
         width: 100%;
@@ -550,7 +508,6 @@
         margin-bottom: 5vw;
     }
 
-    /* ICONS CENTERED */
     .icons {
         width: 100%;
         justify-content: center;
@@ -570,13 +527,7 @@
     }
 }
 
-
-/* =========================
-   VERY SMALL MOBILE
-========================= */
-
 @media (max-width: 350px) {
-
     .skills-section {
         padding-left: 3vw;
         padding-right: 3vw;
@@ -594,38 +545,18 @@
         justify-content: center;
     }
 
-    .skill-item {
-        min-width: 13vw;
-    }
-
-    .skill-item p {
-        font-size: 2.3vw;
-    }
+    .skill-item { min-width: 13vw; }
+    .skill-item p { font-size: 2.3vw; }
 }
 
-
-/* =========================
-   HORIZONTAL GLITCH FIX
-========================= */
-
 @media (max-width: 600px) {
-
-    html,
-    body {
+    html, body {
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
     }
 
-    .skills-section {
-        max-width: 100%;
-    }
-
-    .skills-grid {
-        max-width: 100%;
-    }
-
-    .skills-card {
-        max-width: 100%;
-    }
+    .skills-section { max-width: 100%; }
+    .skills-grid { max-width: 100%; }
+    .skills-card { max-width: 100%; }
 }

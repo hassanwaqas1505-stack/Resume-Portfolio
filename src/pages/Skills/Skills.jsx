@@ -122,8 +122,6 @@
 // };
 // export default Skills;
 
-
-
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -145,37 +143,30 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 const Skills = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    const supportsHover = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
+
     const ctx = gsap.context(() => {
       const title = sectionRef.current.querySelector(".skills-title");
       const cards = gsap.utils.toArray(".skills-card");
       const skillItems = gsap.utils.toArray(".skill-item");
 
-      gsap.set(title, {
-        opacity: 0,
-        y: 70
-      });
-
-      gsap.set(cards, {
-        opacity: 0,
-        scale: 0.85,
-        y: 80
-      });
-
-      gsap.set(skillItems, {
-        opacity: 0,
-        y: 25,
-        scale: 0.7
-      });
+      gsap.set(title, { opacity: 0, y: 70 });
+      gsap.set(cards, { opacity: 0, scale: 0.85, y: 80 });
+      gsap.set(skillItems, { opacity: 0, y: 25, scale: 0.7 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play none none none"
         }
       });
 
@@ -210,76 +201,59 @@ const Skills = () => {
           "-=0.5"
         );
 
-      cards.forEach((card) => {
-        const glow = card.querySelector(".card-glow");
+      if (supportsHover) {
+        const cardCleanups = [];
 
-        card.addEventListener("mouseenter", () => {
-          gsap.to(card, {
-            y: -2,
-            scale: 1.025,
-            duration: 0.35,
-            ease: "power2.out"
-          });
+        cards.forEach((card) => {
+          const glow = card.querySelector(".card-glow");
 
-          gsap.to(glow, {
-            opacity: 1,
-            duration: 0.3
-          });
-        });
+          const onEnter = () => {
+            gsap.to(card, { y: -6, scale: 1.025, duration: 0.35, ease: "power2.out" });
+            gsap.to(glow, { opacity: 1, duration: 0.3 });
+          };
+          const onLeave = () => {
+            gsap.to(card, { y: 0, scale: 1, duration: 0.4, ease: "power2.out" });
+            gsap.to(glow, { opacity: 0, duration: 0.3 });
+          };
 
-        card.addEventListener("mouseleave", () => {
-          gsap.to(card, {
-            y: 0,
-            scale: 1,
-            duration: 0.4,
-            ease: "power2.out"
-          });
-
-          gsap.to(glow, {
-            opacity: 0,
-            duration: 0.3
-          });
-        });
-      });
-
-      skillItems.forEach((item) => {
-        const icon = item.querySelector("svg");
-
-        item.addEventListener("mouseenter", () => {
-          gsap.to(item, {
-            y: -8,
-            scale: 1.08,
-            duration: 0.3,
-            ease: "power2.out"
-          });
-
-          gsap.to(icon, {
-            rotate: 8,
-            scale: 1.15,
-            duration: 0.3,
-            ease: "back.out(2)"
+          card.addEventListener("mouseenter", onEnter);
+          card.addEventListener("mouseleave", onLeave);
+          cardCleanups.push(() => {
+            card.removeEventListener("mouseenter", onEnter);
+            card.removeEventListener("mouseleave", onLeave);
           });
         });
 
-        item.addEventListener("mouseleave", () => {
-          gsap.to(item, {
-            y: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out"
-          });
+        skillItems.forEach((item) => {
+          const icon = item.querySelector("svg");
 
-          gsap.to(icon, {
-            rotate: 0,
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out"
+          const onEnter = () => {
+            gsap.to(item, { y: -7, scale: 1.1, duration: 0.3, ease: "power2.out" });
+            gsap.to(icon, { rotate: 6, scale: 1.1, duration: 0.3, ease: "back.out(2)" });
+          };
+          const onLeave = () => {
+            gsap.to(item, { y: 0, scale: 1, duration: 0.3, ease: "power2.out" });
+            gsap.to(icon, { rotate: 0, scale: 1, duration: 0.3, ease: "power2.out" });
+          };
+
+          item.addEventListener("mouseenter", onEnter);
+          item.addEventListener("mouseleave", onLeave);
+          cardCleanups.push(() => {
+            item.removeEventListener("mouseenter", onEnter);
+            item.removeEventListener("mouseleave", onLeave);
           });
         });
-      });
+
+        sectionRef.current._skillCleanups = cardCleanups;
+      }
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      if (sectionRef.current && sectionRef.current._skillCleanups) {
+        sectionRef.current._skillCleanups.forEach((cleanup) => cleanup());
+      }
+      ctx.revert();
+    };
   }, []);
 
   return (

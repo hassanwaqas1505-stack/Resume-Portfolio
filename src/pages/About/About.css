@@ -131,6 +131,7 @@
 .about {
     position: relative;
     height: 100vh;
+    height: 100dvh; /* avoids layout jump when mobile address bar hides/shows */
     overflow: hidden;
     background: rgb(2, 2, 24);
     padding-top: 1rem;
@@ -185,36 +186,18 @@
 }
 
 @keyframes orbOne {
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(120px, 60px) scale(1.25);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(120px, 60px) scale(1.25); }
 }
 
 @keyframes orbTwo {
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(-100px, -70px) scale(1.2);
-    }
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-100px, -70px) scale(1.2); }
 }
 
 @keyframes orbThree {
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(-100px);
-    }
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-100px); }
 }
 
 .light-line {
@@ -222,12 +205,7 @@
     width: 55%;
     height: 1px;
     opacity: 0;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(48, 227, 255, 0.7),
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(48, 227, 255, 0.7), transparent);
     filter: blur(0.5px);
 }
 
@@ -252,53 +230,19 @@
 }
 
 @keyframes lightMoveOne {
-    0% {
-        left: -60%;
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 0.7;
-    }
-
-    50% {
-        left: 100%;
-        opacity: 0.8;
-    }
-
-    70% {
-        opacity: 0;
-    }
-
-    100% {
-        left: 120%;
-        opacity: 0;
-    }
+    0% { left: -60%; opacity: 0; }
+    15% { opacity: 0.7; }
+    50% { left: 100%; opacity: 0.8; }
+    70% { opacity: 0; }
+    100% { left: 120%; opacity: 0; }
 }
 
 @keyframes lightMoveTwo {
-    0% {
-        right: -60%;
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 0.6;
-    }
-
-    50% {
-        right: 100%;
-        opacity: 0.7;
-    }
-
-    70% {
-        opacity: 0;
-    }
-
-    100% {
-        right: 120%;
-        opacity: 0;
-    }
+    0% { right: -60%; opacity: 0; }
+    15% { opacity: 0.6; }
+    50% { right: 100%; opacity: 0.7; }
+    70% { opacity: 0; }
+    100% { right: 120%; opacity: 0; }
 }
 
 .star {
@@ -311,93 +255,31 @@
     opacity: 0;
 }
 
-.star-1 {
-    left: 8%;
-    top: 20%;
-}
-
-.star-2 {
-    left: 28%;
-    top: 12%;
-}
-
-.star-3 {
-    left: 48%;
-    top: 28%;
-}
-
-.star-4 {
-    right: 12%;
-    top: 18%;
-}
-
-.star-5 {
-    right: 25%;
-    top: 58%;
-}
-
-.star-6 {
-    left: 18%;
-    bottom: 18%;
-}
-
-.star-7 {
-    left: 58%;
-    bottom: 12%;
-}
-
-.star-8 {
-    right: 7%;
-    bottom: 25%;
-}
+.star-1 { left: 8%; top: 20%; }
+.star-2 { left: 28%; top: 12%; }
+.star-3 { left: 48%; top: 28%; }
+.star-4 { right: 12%; top: 18%; }
+.star-5 { right: 25%; top: 58%; }
+.star-6 { left: 18%; bottom: 18%; }
+.star-7 { left: 58%; bottom: 12%; }
+.star-8 { right: 7%; bottom: 25%; }
 
 .animate .star {
     animation: starPulse 2.5s ease-in-out infinite;
 }
 
-.animate .star-1 {
-    animation-delay: 0s;
-}
-
-.animate .star-2 {
-    animation-delay: 0.4s;
-}
-
-.animate .star-3 {
-    animation-delay: 0.8s;
-}
-
-.animate .star-4 {
-    animation-delay: 1.2s;
-}
-
-.animate .star-5 {
-    animation-delay: 1.6s;
-}
-
-.animate .star-6 {
-    animation-delay: 2s;
-}
-
-.animate .star-7 {
-    animation-delay: 0.7s;
-}
-
-.animate .star-8 {
-    animation-delay: 1.4s;
-}
+.animate .star-1 { animation-delay: 0s; }
+.animate .star-2 { animation-delay: 0.4s; }
+.animate .star-3 { animation-delay: 0.8s; }
+.animate .star-4 { animation-delay: 1.2s; }
+.animate .star-5 { animation-delay: 1.6s; }
+.animate .star-6 { animation-delay: 2s; }
+.animate .star-7 { animation-delay: 0.7s; }
+.animate .star-8 { animation-delay: 1.4s; }
 
 @keyframes starPulse {
-    0%,
-    100% {
-        opacity: 0.2;
-        transform: scale(0.7);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.8);
-    }
+    0%, 100% { opacity: 0.2; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.8); }
 }
 
 .about-header {
@@ -435,10 +317,7 @@
 }
 
 @keyframes revealUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .about-row {
@@ -458,11 +337,7 @@
     flex-shrink: 0;
     padding: 4px;
     border-radius: 20px;
-    background: linear-gradient(
-        135deg,
-        rgb(27, 206, 255),
-        rgb(26, 206, 134)
-    );
+    background: linear-gradient(135deg, rgb(27, 206, 255), rgb(26, 206, 134));
     opacity: 0;
     transform: translateX(-100px) scale(0.9);
 }
@@ -474,21 +349,12 @@
 }
 
 @keyframes imageReveal {
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-    }
+    to { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 @keyframes imageFloat {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 .image-wrapper {
@@ -504,12 +370,7 @@
     position: absolute;
     inset: 0;
     z-index: 3;
-    background: linear-gradient(
-        110deg,
-        transparent 20%,
-        rgba(255, 255, 255, 0.2) 45%,
-        transparent 70%
-    );
+    background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.2) 45%, transparent 70%);
     transform: translateX(-120%);
     pointer-events: none;
 }
@@ -519,9 +380,7 @@
 }
 
 @keyframes imageLight {
-    to {
-        transform: translateX(120%);
-    }
+    to { transform: translateX(120%); }
 }
 
 .about-image {
@@ -534,9 +393,7 @@
     border-radius: 16px;
     transform: scale(1.12);
     filter: brightness(0.75);
-    transition:
-        transform 0.8s ease,
-        filter 0.8s ease;
+    transition: transform 0.8s ease, filter 0.8s ease;
 }
 
 .animate .about-image {
@@ -544,10 +401,7 @@
 }
 
 @keyframes imageZoom {
-    to {
-        transform: scale(1);
-        filter: brightness(1);
-    }
+    to { transform: scale(1); filter: brightness(1); }
 }
 
 .left:hover .about-image {
@@ -586,10 +440,7 @@
 }
 
 @keyframes textReveal {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 .right h3:hover {
@@ -606,61 +457,28 @@
     font-size: 1.2rem;
     font-style: italic;
 }
-/* =========================
-   TABLET / LAPTOP
-========================= */
 
 @media (max-width: 900px) {
-    .about-header {
-        margin-left: 4rem;
-        margin-right: 4rem;
-    }
-
-    .about-header h1 {
-        font-size: 1.3rem;
-    }
-
-    .about-header h2 {
-        font-size: 2rem;
-    }
-
-    .about-row {
-        margin-left: 4rem;
-        margin-right: 4rem;
-        gap: 2rem;
-    }
-
-    .right {
-        max-width: 50%;
-        margin-left: 0;
-    }
-
-    .right h3 {
-        font-size: 0.85rem;
-        line-height: 1.7;
-    }
-
-    .about-image {
-        min-height: 320px;
-    }
+    .about-header { margin-left: 4rem; margin-right: 4rem; }
+    .about-header h1 { font-size: 1.3rem; }
+    .about-header h2 { font-size: 2rem; }
+    .about-row { margin-left: 4rem; margin-right: 4rem; gap: 2rem; }
+    .right { max-width: 50%; margin-left: 0; }
+    .right h3 { font-size: 0.85rem; line-height: 1.7; }
+    .about-image { min-height: 320px; }
 }
-
-
-/* =========================
-   MOBILE
-========================= */
 
 @media (max-width: 600px) {
     .about {
         height: auto;
         min-height: 100vh;
+        min-height: 100dvh;
         margin-top: -2rem;
         padding-top: 0;
         padding-bottom: 5rem;
         overflow: hidden;
     }
 
-    /* TITLE */
     .about-header {
         margin-left: 6vw;
         margin-right: 6vw;
@@ -668,36 +486,20 @@
         text-align: left;
     }
 
-    .about-header h1 {
-        font-size: 5vw;
-        line-height: 1.4;
-        margin: 0;
-    }
+    .about-header h1 { font-size: 5vw; line-height: 1.4; margin: 0; }
+    .about-header h2 { margin-top: 4vw; font-size: 7vw; line-height: 1.25; margin-bottom: 0; }
 
-    .about-header h2 {
-        margin-top: 4vw;
-        font-size: 7vw;
-        line-height: 1.25;
-        margin-bottom: 0;
-    }
-
-
-    /* IMAGE + DESCRIPTION */
     .about-row {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-
         width: 100%;
         margin-left: 6vw;
         margin-right: 0;
-
         gap: 2rem;
         margin-top: 2.5rem;
     }
 
-
-    /* IMAGE */
     .left {
         width: 88%;
         max-width: 500px;
@@ -708,8 +510,7 @@
         order: 1;
     }
 
-    .image-wrapper,
-    .about-image {
+    .image-wrapper, .about-image {
         width: 100%;
         height: 420px;
         min-height: 420px;
@@ -718,8 +519,6 @@
         border-radius: 12px;
     }
 
-
-    /* DESCRIPTION */
     .right {
         width: 88%;
         max-width: 500px;
@@ -728,167 +527,47 @@
         order: 2;
     }
 
-    .right h3 {
-        margin: 0;
-        padding: 0;
-        font-size: 3.4vw;
-        line-height: 1.8;
-        text-align: left;
-    }
+    .right h3 { margin: 0; padding: 0; font-size: 3.4vw; line-height: 1.8; text-align: left; }
 
+    .signature { margin-top: 1.5rem; text-align: left; }
+    .signature em { font-size: 3.5vw; line-height: 1.5; }
 
-    /* SIGNATURE */
-    .signature {
-        margin-top: 1.5rem;
-        text-align: left;
-    }
-
-    .signature em {
-        font-size: 3.5vw;
-        line-height: 1.5;
-    }
-
-
-    /* ORBS */
-    .orb-1 {
-        width: 250px;
-        height: 250px;
-    }
-
-    .orb-2 {
-        width: 220px;
-        height: 220px;
-    }
-
-    .orb-3 {
-        width: 160px;
-        height: 160px;
-    }
-
-    .light-line {
-        width: 80%;
-    }
+    .orb-1 { width: 250px; height: 250px; }
+    .orb-2 { width: 220px; height: 220px; }
+    .orb-3 { width: 160px; height: 160px; }
+    .light-line { width: 80%; }
 }
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
 
 @media (max-width: 400px) {
-    .about {
-        padding-bottom: 4rem;
-    }
+    .about { padding-bottom: 4rem; }
+    .about-header { margin-left: 5vw; margin-right: 5vw; padding-top: 2rem; }
+    .about-header h1 { font-size: 4.5vw; line-height: 1.4; }
+    .about-header h2 { margin-top: 4vw; font-size: 7vw; line-height: 1.25; }
+    .about-row { margin-left: 5vw; margin-right: 0; margin-top: 2rem; gap: 1.8rem; }
 
-    .about-header {
-        margin-left: 5vw;
-        margin-right: 5vw;
-        padding-top: 2rem;
-    }
+    .left { width: 90%; max-width: 400px; margin: 0; align-self: flex-start; }
+    .image-wrapper, .about-image { width: 100%; height: 380px; min-height: 380px; object-fit: cover; }
 
-    .about-header h1 {
-        font-size: 4.5vw;
-        line-height: 1.4;
-    }
+    .right { width: 90%; max-width: 400px; margin: 0; align-self: flex-start; }
+    .right h3 { font-size: 3.5vw; line-height: 1.8; text-align: left; }
 
-    .about-header h2 {
-        margin-top: 4vw;
-        font-size: 7vw;
-        line-height: 1.25;
-    }
+    .signature { margin-top: 1.2rem; }
+    .signature em { font-size: 3.8vw; }
 
-    .about-row {
-        margin-left: 5vw;
-        margin-right: 0;
-        margin-top: 2rem;
-        gap: 1.8rem;
-    }
-
-
-    /* LONGER IMAGE */
-    .left {
-        width: 90%;
-        max-width: 400px;
-        margin: 0;
-        align-self: flex-start;
-    }
-
-    .image-wrapper,
-    .about-image {
-        width: 100%;
-        height: 380px;
-        min-height: 380px;
-        object-fit: cover;
-    }
-
-
-    /* TEXT */
-    .right {
-        width: 90%;
-        max-width: 400px;
-        margin: 0;
-        align-self: flex-start;
-    }
-
-    .right h3 {
-        font-size: 3.5vw;
-        line-height: 1.8;
-        text-align: left;
-    }
-
-    .signature {
-        margin-top: 1.2rem;
-    }
-
-    .signature em {
-        font-size: 3.8vw;
-    }
-
-
-    /* ORBS */
-    .orb-1 {
-        width: 200px;
-        height: 200px;
-    }
-
-    .orb-2 {
-        width: 180px;
-        height: 180px;
-    }
-
-    .orb-3 {
-        width: 130px;
-        height: 130px;
-    }
-
-    .light-line {
-        width: 75%;
-    }
+    .orb-1 { width: 200px; height: 200px; }
+    .orb-2 { width: 180px; height: 180px; }
+    .orb-3 { width: 130px; height: 130px; }
+    .light-line { width: 75%; }
 }
 
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
 @media (prefers-reduced-motion: reduce) {
-    .orb,
-    .star,
-    .light-line,
-    .left,
-    .about-image,
-    .image-wrapper::before,
-    .about-header h1,
-    .about-header h2,
-    .right h3 {
+    .orb, .star, .light-line, .left, .about-image,
+    .image-wrapper::before, .about-header h1, .about-header h2, .right h3 {
         animation: none !important;
         transition: none !important;
     }
 
-    .about-header h1,
-    .about-header h2,
-    .left,
-    .right h3 {
+    .about-header h1, .about-header h2, .left, .right h3 {
         opacity: 1;
         transform: none;
     }

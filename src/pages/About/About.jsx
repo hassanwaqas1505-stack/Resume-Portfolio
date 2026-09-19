@@ -60,6 +60,7 @@
 // export default About
 
 
+
 import React, { useEffect, useRef } from 'react'
 import './About.css'
 import Mypic from '../../assets/Mypic.jpeg'
@@ -76,8 +77,7 @@ const About = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           section.classList.add('animate')
-        } else {
-          section.classList.remove('animate')
+          observer.unobserve(section)
         }
       },
       {

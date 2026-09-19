@@ -1,0 +1,265 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: #010512;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  overflow: hidden;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: rgba(26, 160, 190, 0.06);
+  filter: blur(90px);
+}
+
+.loader-content {
+  position: relative;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.loader-rings {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  pointer-events: none;
+}
+
+.ring-one {
+  width: 120px;
+  height: 120px;
+  border-width: 2px;
+  border-color: rgb(26, 160, 190) transparent transparent transparent;
+  animation: rotateOne 1.3s linear infinite;
+  box-shadow: 0 0 12px rgba(26, 160, 190, 0.35);
+}
+
+.ring-two {
+  width: 145px;
+  height: 145px;
+  border-width: 2px;
+  border-color: transparent #4d7cff transparent transparent;
+  animation: rotateTwo 1.8s linear infinite;
+  box-shadow: 0 0 12px rgba(77, 124, 255, 0.3);
+}
+
+.ring-three {
+  width: 170px;
+  height: 170px;
+  border-width: 2px;
+  border-color: transparent transparent #8b5cf6 transparent;
+  animation: rotateThree 2.4s linear infinite;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.25);
+}
+
+.loader-logo {
+  position: relative;
+  width: 95px;
+  height: 95px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(1, 5, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 25px rgba(26, 160, 190, 0.15),
+    inset 0 0 25px rgba(26, 160, 190, 0.05);
+  z-index: 5;
+}
+
+.loader-logo h2 {
+  margin: 0;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-shadow: 0 0 18px rgba(26, 160, 190, 0.55);
+}
+
+.loader-title {
+  margin-top: 28px;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.loader-subtitle {
+  margin-top: 7px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.loader-bar {
+  position: relative;
+  width: 180px;
+  height: 3px;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loader-bar span {
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: rgb(26, 160, 190);
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(26, 160, 190, 0.8);
+  animation: loaderProgress 1.4s ease-in-out infinite;
+}
+
+.loader-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.loader-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgb(26, 160, 190);
+  animation: loaderDots 1.2s ease-in-out infinite;
+}
+
+.loader-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.loader-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes rotateOne {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateTwo {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateThree {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loaderProgress {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes loaderDots {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 600px) {
+  .loader-content {
+    width: 240px;
+  }
+
+  .loader-rings {
+    width: 175px;
+    height: 175px;
+  }
+
+  .ring-one {
+    width: 110px;
+    height: 110px;
+  }
+
+  .ring-two {
+    width: 135px;
+    height: 135px;
+  }
+
+  .ring-three {
+    width: 160px;
+    height: 160px;
+  }
+
+  .loader-logo {
+    width: 88px;
+    height: 88px;
+  }
+
+  .loader-logo h2 {
+    font-size: 2.1rem;
+  }
+
+  .loader-title {
+    font-size: 1rem;
+    letter-spacing: 2.5px;
+  }
+
+  .loader-subtitle {
+    font-size: 0.68rem;
+  }
+
+  .loader-bar {
+    width: 160px;
+  }
+}

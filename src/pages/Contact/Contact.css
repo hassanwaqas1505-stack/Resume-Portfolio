@@ -208,9 +208,13 @@ form button:hover {
     }
 } */
 
+
+
+
 .contact-form {
     background-color: rgb(2, 2, 24);
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
 }
 
@@ -345,10 +349,12 @@ form button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-form button:hover {
-    background: linear-gradient(135deg, #3961b6, #9f48ba);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(66, 112, 212, 0.25);
+@media (hover: hover) and (pointer: fine) {
+    form button:hover {
+        background: linear-gradient(135deg, #3961b6, #9f48ba);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(66, 112, 212, 0.25);
+    }
 }
 
 @media (max-width: 900px) {

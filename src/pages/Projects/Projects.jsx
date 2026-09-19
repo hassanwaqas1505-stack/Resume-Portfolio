@@ -134,12 +134,15 @@
 // export default Projects;
 
 
+
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./Projects.css";
 
 gsap.registerPlugin(ScrollTrigger);
+
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const Projects = () => {
   const sectionRef = useRef(null);
@@ -180,53 +183,73 @@ const Projects = () => {
   ];
 
   useEffect(() => {
-  const ctx = gsap.context(() => {
-    const cards = gsap.utils.toArray(".project-card");
+    const supportsHover = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
 
-    cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        {
-          opacity: 0,
-          x: index % 2 === 0 ? -80 : 80,
-          scale: 0.98,
-        },
-        {
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".project-card");
+      const cardCleanups = [];
+
+      cards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            x: index % 2 === 0 ? -80 : 80,
+            scale: 0.98,
           },
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+
+        if (supportsHover) {
+          const onEnter = () => {
+            gsap.to(card, {
+              y: -5,
+              scale: 1.01,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          };
+          const onLeave = () => {
+            gsap.to(card, {
+              y: 0,
+              scale: 1,
+              duration: 0.35,
+              ease: "power2.out",
+            });
+          };
+
+          card.addEventListener("mouseenter", onEnter);
+          card.addEventListener("mouseleave", onLeave);
+          cardCleanups.push(() => {
+            card.removeEventListener("mouseenter", onEnter);
+            card.removeEventListener("mouseleave", onLeave);
+          });
         }
-      );
-
-      card.addEventListener("mouseenter", () => {
-        gsap.to(card, {
-          y: -5,
-          scale: 1.01,
-          duration: 0.3,
-          ease: "power2.out",
-        });
       });
 
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          y: 0,
-          scale: 1,
-          duration: 0.35,
-          ease: "power2.out",
-        });
-      });
-    });
-  }, sectionRef);
+      sectionRef.current._projectCleanups = cardCleanups;
+    }, sectionRef);
 
-  return () => ctx.revert();
-}, []);
+    return () => {
+      if (sectionRef.current && sectionRef.current._projectCleanups) {
+        sectionRef.current._projectCleanups.forEach((cleanup) => cleanup());
+      }
+      ctx.revert();
+    };
+  }, []);
 
   return (
     <div className="projects-section" id="projects" ref={sectionRef}>
@@ -234,6 +257,7 @@ const Projects = () => {
 
       <div className="projects-container">
         {projectsData.map((project) => (
+          
           <a
             key={project.id}
             href={project.link}

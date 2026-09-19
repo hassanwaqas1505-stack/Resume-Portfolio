@@ -107,7 +107,6 @@
 
 // export default Contact
 
-
 import React, { useEffect, useRef, useState } from "react";
 import "./Contact.css";
 import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
@@ -115,174 +114,175 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const Contact = () => {
-  const sectionRef = useRef(null);
+    const sectionRef = useRef(null);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
     });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetch(
-        "https://portfolio-backend-ten-rho.vercel.app/api/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formData)
-        }
-      );
-
-      const data = await res.json();
-
-      alert(data.message);
-
-      if (res.ok) {
+    const handleChange = (e) => {
         setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: ""
+            ...formData,
+            [e.target.name]: e.target.value
         });
-      }
-    } catch (error) {
-      console.error("Contact Error:", error);
-      alert("Something went wrong. Please try again.");
-    }
-  };
+    };
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const leftItems = gsap.utils.toArray(
-        ".contact-form h2, .contact-form > p, .info-item, .info-type"
-      );
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-      const form = document.querySelector(".contact-form form");
+        try {
+            const res = await fetch(
+                "https://portfolio-backend-ten-rho.vercel.app/api/contact",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                }
+            );
 
-      gsap.fromTo(
-        leftItems,
-        {
-          opacity: 0,
-          x: -70
-        },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.9,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            toggleActions: "play none none none"
-          }
+            const data = await res.json();
+
+            alert(data.message);
+
+            if (res.ok) {
+                setFormData({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: ""
+                });
+            }
+        } catch (error) {
+            console.error("Contact Error:", error);
+            alert("Something went wrong. Please try again.");
         }
-      );
+    };
 
-      gsap.fromTo(
-        form,
-        {
-          opacity: 0,
-          x: 80,
-          scale: 0.96
-        },
-        {
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    }, sectionRef);
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const leftItems = gsap.utils.toArray(
+                ".contact-form h2, .contact-form > p, .info-item, .info-type"
+            );
 
-    return () => ctx.revert();
-  }, []);
+            const form = sectionRef.current.querySelector("form");
 
-  return (
-    <div className="contact-form" ref={sectionRef}>
-      <h2>Get in Touch</h2>
+            gsap.fromTo(
+                leftItems,
+                {
+                    opacity: 0,
+                    x: -70
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.9,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
 
-      <p>
-        Have a question or want to work together? Drop us a message!
-      </p>
+            gsap.fromTo(
+                form,
+                {
+                    opacity: 0,
+                    x: 80,
+                    scale: 0.96
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }, sectionRef);
 
-      <div className="info-item">
-        <FaEnvelope />
-        <h3>Email</h3>
-        <p>hassanmugall123@gmail.com</p>
-      </div>
+        return () => ctx.revert();
+    }, []);
 
-      <div className="info-type">
-        <FaMapMarkerAlt />
-        <h3>Location</h3>
-        <p>Lahore, Pakistan</p>
-      </div>
+    return (
+        <div className="contact-form" ref={sectionRef}>
+            <h2>Get in Touch</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+            <p>
+                Have a question or want to work together? Drop us a message!
+            </p>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+            <div className="info-item">
+                <FaEnvelope />
+                <h3>Email</h3>
+                <p>hassanmugall123@gmail.com</p>
+            </div>
 
-        <input
-          type="text"
-          name="subject"
-          placeholder="Subject"
-          value={formData.subject}
-          onChange={handleChange}
-          required
-        />
+            <div className="info-type">
+                <FaMapMarkerAlt />
+                <h3>Location</h3>
+                <p>Lahore, Pakistan</p>
+            </div>
 
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          rows="5"
-          value={formData.message}
-          onChange={handleChange}
-          required
-        ></textarea>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                />
 
-        <button type="submit">
-          Send Message
-          <FaPaperPlane />
-        </button>
-      </form>
-    </div>
-  );
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
+
+                <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                />
+
+                <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Send Message
+                    <FaPaperPlane />
+                </button>
+            </form>
+        </div>
+    );
 };
 
 export default Contact;

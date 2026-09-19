@@ -71,7 +71,6 @@
 
 // export default Header
 
-
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -79,17 +78,24 @@ import "./Header.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 const Header = () => {
   const headerRef = useRef(null);
   const badgeRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
+  const typeTextRef = useRef(null);
+  const cursorRef = useRef(null);
   const descriptionRef = useRef(null);
   const buttonsRef = useRef(null);
   const planetRef = useRef(null);
   const glowRef = useRef(null);
 
   useEffect(() => {
+    let typeTimer;
+    let pauseTimer;
+
     const ctx = gsap.context(() => {
       const elements = [
         badgeRef.current,
@@ -116,49 +122,9 @@ const Header = () => {
         scale: 0.5
       });
 
-      const name = titleRef.current.querySelector(".name");
-
-      if (name && !name.querySelector(".letter")) {
-        const text = name.textContent;
-
-        name.innerHTML = text
-          .split("")
-          .map((letter) => {
-            if (letter === " ") {
-              return '<span class="letter">&nbsp;</span>';
-            }
-
-            return `<span class="letter">${letter}</span>`;
-          })
-          .join("");
-      }
-
-      const letters = name
-        ? name.querySelectorAll(".letter")
-        : [];
-
       const tl = gsap.timeline({
-        paused: true,
         defaults: {
           ease: "power3.out"
-        },
-        onStart: () => {
-          gsap.set(elements, {
-            opacity: 0,
-            y: 35
-          });
-
-          gsap.set(planetRef.current, {
-            opacity: 0,
-            scale: 0.4,
-            x: 80,
-            rotation: -30
-          });
-
-          gsap.set(glowRef.current, {
-            opacity: 0,
-            scale: 0.5
-          });
         }
       });
 
@@ -225,70 +191,67 @@ const Header = () => {
             ease: "power2.out"
           },
           "-=1.5"
+        )
+        .to(
+          glowRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1.5,
+            ease: "power2.out"
+          },
+          "-=1.5"
         );
 
-      const playAnimation = () => {
-        tl.restart();
+      const textLines = [
+        "Full-Stack Developer and UI/UX Enthusiast",
+        "JavaScript & MERN Stack Developer"
+      ];
 
-        if (letters.length) {
-          gsap.fromTo(
-            letters,
-            {
-              opacity: 0,
-              y: 25,
-              rotateX: -70
-            },
-            {
-              opacity: 1,
-              y: 0,
-              rotateX: 0,
-              duration: 0.7,
-              stagger: 0.045,
-              ease: "back.out(1.7)",
-              delay: 0.65
-            }
-          );
+      let currentLine = 0;
+      let typeIndex = 0;
+
+      const typeWriter = () => {
+        if (!typeTextRef.current) return;
+
+        const text = textLines[currentLine];
+
+        typeTextRef.current.textContent =
+          text.slice(0, typeIndex + 1);
+
+        typeIndex++;
+
+        if (typeIndex < text.length) {
+          typeTimer = setTimeout(typeWriter, 65);
+          return;
         }
+
+        if (currentLine === 0) {
+          pauseTimer = setTimeout(() => {
+            typeTextRef.current.textContent = "";
+            typeIndex = 0;
+            currentLine = 1;
+
+            typeTimer = setTimeout(typeWriter, 350);
+          }, 1200);
+
+          return;
+        }
+
+        cursorRef.current.style.display = "none";
+
+        pauseTimer = setTimeout(() => {
+          typeTextRef.current.textContent = "";
+          typeIndex = 0;
+          currentLine = 0;
+
+          cursorRef.current.style.display = "inline-block";
+
+          typeTimer = setTimeout(typeWriter, 500);
+        }, 2200);
       };
 
-      const resetAnimation = () => {
-        tl.pause(0);
-
-        gsap.set(elements, {
-          opacity: 0,
-          y: 35
-        });
-
-        gsap.set(planetRef.current, {
-          opacity: 0,
-          scale: 0.4,
-          x: 80,
-          rotation: -30
-        });
-
-        gsap.set(glowRef.current, {
-          opacity: 0,
-          scale: 0.5
-        });
-
-        if (letters.length) {
-          gsap.set(letters, {
-            opacity: 0,
-            y: 25,
-            rotateX: -70
-          });
-        }
-      };
-
-      ScrollTrigger.create({
-        trigger: headerRef.current,
-        start: "top 90%",
-        end: "bottom 10%",
-        onEnter: playAnimation,
-        onEnterBack: playAnimation,
-        onLeave: resetAnimation,
-        onLeaveBack: resetAnimation
-      });
+      typeTimer = setTimeout(typeWriter, 1000);
 
       gsap.to(planetRef.current, {
         y: -18,
@@ -309,8 +272,11 @@ const Header = () => {
       });
 
       const handleMouseMove = (event) => {
-        const x = (event.clientX / window.innerWidth - 0.5) * 2;
-        const y = (event.clientY / window.innerHeight - 0.5) * 2;
+        const x =
+          (event.clientX / window.innerWidth - 0.5) * 2;
+
+        const y =
+          (event.clientY / window.innerHeight - 0.5) * 2;
 
         gsap.to(planetRef.current, {
           x: x * 25,
@@ -332,15 +298,27 @@ const Header = () => {
       window.addEventListener("mousemove", handleMouseMove);
 
       return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener(
+          "mousemove",
+          handleMouseMove
+        );
       };
     }, headerRef);
 
-    return () => ctx.revert();
+    return () => {
+      clearTimeout(typeTimer);
+      clearTimeout(pauseTimer);
+      ctx.revert();
+    };
   }, []);
 
   return (
     <div className="header" ref={headerRef}>
+      <div className="background-flow flow-one"></div>
+      <div className="background-flow flow-two"></div>
+      <div className="background-flow flow-three"></div>
+      <div className="background-line"></div>
+
       <div className="stars stars-one"></div>
       <div className="stars stars-two"></div>
       <div className="stars stars-three"></div>
@@ -367,7 +345,16 @@ const Header = () => {
         </h1>
 
         <div className="box" ref={subtitleRef}>
-          <h4>Full-Stack Website Developer</h4>
+          <h4>
+            <span
+              className="typing-text"
+              ref={typeTextRef}
+            ></span>
+            <span
+              className="typing-cursor"
+              ref={cursorRef}
+            ></span>
+          </h4>
         </div>
 
         <h2 className="description" ref={descriptionRef}>
